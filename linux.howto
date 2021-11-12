@@ -1,0 +1,18 @@
+name={linux.howto}
+version={5.10}
+lts={true}
+heavily-depends-on={fakeroot}
+makedeps={gcc make perl}
+
+    prepare{
+        wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.79.tar.xz
+    }
+    build {
+        tar -xf linux-5.10.79.tar.xz /MatuusOS/sources/kernel-linux
+        cd /MatuusOS/sources/kernel-linux
+        make menuconfig
+        make -j$CFLAGS
+        }
+    install {
+        sudo make install
+    }
